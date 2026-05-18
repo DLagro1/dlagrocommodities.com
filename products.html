@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Products | DL Agro Commodities Ltd.</title>
+  <meta name="description" content="DL Agro Commodities Ltd. offers Premium Canola Meal, Soybean Meal, DDGS, Hard Red Spring Wheat, and Feed-Grade Maize. Full specifications, certifications, and CIF trade terms." />
+  <link rel="canonical" href="https://dlagrocommodities.com/products.html" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/jpeg" href="logo.jpg" />
+  <style>
+    /* Product nav tabs */
+    .product-nav {
+      background: var(--white);
+      border-bottom: 2px solid var(--warm-gray);
+      position: sticky;
+      top: var(--nav-height);
+      z-index: 100;
+    }
+
+    .product-nav-inner {
+      display: flex;
+      overflow-x: auto;
+      gap: 0;
+      scrollbar-width: none;
+    }
+
+    .product-nav-inner::-webkit-scrollbar { display: none; }
+
+    .product-tab {
+      flex-shrink: 0;
+      padding: 18px 24px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      text-decoration: none;
+      display: block;
+    }
+
+    .product-tab:hover { color: var(--green-dark); }
+    .product-tab.active { color: var(--green-dark); border-bottom-color: var(--gold); }
+
+    /* Product section blocks */
+    .product-block {
+      padding: 80px 0;
+      scroll-margin-top: calc(var(--nav-height) + 56px);
+    }
+
+    .product-block:nth-child(odd)  { background: var(--white); }
+    .product-block:nth-child(even) { background: var(--off-white); }
+
+    .product-block-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 64px;
+      align-items: start;
+      margin-bottom: 48px;
+    }
+
+    .product-block:nth-child(even) .product-block-grid {
+      grid-template-columns: 1.6fr 1fr;
+    }
+
+    .product-block:nth-child(even) .product-block-grid .product-visual {
+      order: 2;
+    }
+
+    .product-block:nth-child(even) .product-block-grid .product-info {
+      order: 1;
+    }
+
+    .product-visual {
+      position: relative;
+    }
+
+    .product-emoji-card {
+      aspect-ratio: 1;
+      background: linear-gradient(145deg, var(--warm-gray), #c8d9c0);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-emoji-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(26,92,42,0.15), transparent);
+    }
+
+    .product-emoji-card .emoji { font-size: 5rem; position: relative; z-index: 1; }
+
+    .product-num-tag {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: var(--green-dark);
+      color: var(--gold);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 100px;
+    }
+
+    .product-info h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800;
+      color: var(--green-dark);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .product-info p {
+      font-size: 0.92rem;
+      line-height: 1.85;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    /* Spec table per product */
+    .product-spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    }
+
+    .product-spec-table thead {
+      background: var(--green-dark);
+      color: var(--white);
+    }
+
+    .product-spec-table thead th {
+      padding: 14px 20px;
+      text-align: left;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .product-spec-table tbody tr {
+      border-bottom: 1px solid var(--warm-gray);
+      transition: background 0.2s;
+    }
+
+    .product-spec-table tbody tr:last-child { border-bottom: none; }
+    .product-spec-table tbody tr:hover { background: rgba(26,92,42,0.04); }
+
+    .product-spec-table tbody td {
+      padding: 13px 20px;
+      color: var(--text-dark);
+    }
+
+    .product-spec-table tbody td:first-child {
+      font-weight: 600;
+      color: var(--green-dark);
+      width: 45%;
+    }
+
+    .spec-val {
+      font-weight: 700;
+      color: var(--green-mid);
+    }
+
+    .spec-table-wrap {
+      overflow-x: auto;
+      border-radius: 8px;
+    }
+
+    .product-divider {
+      border: none;
+      border-top: 2px dashed rgba(26,92,42,0.12);
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .product-block-grid { grid-template-columns: 1fr; gap: 32px; }
+      .product-block:nth-child(even) .product-block-grid .product-visual { order: 1; }
+      .product-block:nth-child(even) .product-block-grid .product-info { order: 2; }
+      .product-emoji-card { aspect-ratio: 16/7; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="nav-logo"><img src="logo.jpg" alt="DL Agro Commodities Ltd." /></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="products.html" class="active">Our Products</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li class="nav-cta"><a href="contact.html" class="btn btn-gold">Get a Quote</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- ========== PAGE HERO ========== -->
+  <section class="page-hero">
+    <div class="container page-hero-content">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a><span>/</span>
+        <span style="color:rgba(255,255,255,0.6)">Our Products</span>
+      </div>
+      <h1>Our Products</h1>
+      <p>Five premium-grade Canadian agricultural commodities — sourced, certified, and delivered globally under Incoterms 2020 CIF.</p>
+    </div>
+  </section>
+
+  <!-- ========== PRODUCT TABS NAV ========== -->
+  <nav class="product-nav">
+    <div class="container product-nav-inner">
+      <a href="#canola-meal"   class="product-tab active">01 &mdash; Canola Meal</a>
+      <a href="#soybean-meal"  class="product-tab">02 &mdash; Soybean Meal</a>
+      <a href="#ddgs"          class="product-tab">03 &mdash; DDGS</a>
+      <a href="#wheat"         class="product-tab">04 &mdash; Spring Wheat</a>
+      <a href="#maize"         class="product-tab">05 &mdash; Maize (Corn)</a>
+    </div>
+  </nav>
+
+  <!-- ========================================================
+       PRODUCT 01 — PREMIUM CANOLA MEAL
+  ========================================================= -->
+  <section class="product-block" id="canola-meal">
+    <div class="container">
+      <div class="product-block-grid">
+        <div class="product-visual reveal">
+          <div class="product-emoji-card">
+            <span class="product-num-tag">Product 01</span>
+            <span class="emoji">🌾</span>
+          </div>
+        </div>
+        <div class="product-info reveal">
+          <span class="section-label">Flagship Product</span>
+          <h2>Premium Canadian Canola Meal</h2>
+          <div class="divider-gold"></div>
+          <div class="product-badge-row">
+            <span class="badge badge-green">✓ High-Protein</span>
+            <span class="badge badge-green">✓ Low-Moisture</span>
+            <span class="badge badge-gold">★ CFIA Certified</span>
+          </div>
+          <p>Our flagship offering — a high-performance animal nutrition ingredient sourced from Canada's most productive canola-growing regions. Cold-processed and rigorously quality-tested, our canola meal delivers superior protein density for livestock and aquaculture feed operations worldwide.</p>
+          <div class="spec-table-wrap">
+            <table class="product-spec-table">
+              <thead>
+                <tr><th>Parameter</th><th>Specification</th><th>Standard</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Crude Protein (CP)</td><td><span class="spec-val">≥ 36%</span></td><td>AOAC 990.03</td></tr>
+                <tr><td>Moisture Content</td><td><span class="spec-val">≤ 12%</span></td><td>AOAC 934.01</td></tr>
+                <tr><td>Crude Fiber (CF)</td><td><span class="spec-val">≤ 12%</span></td><td>AOAC 962.09</td></tr>
+                <tr><td>Crude Fat</td><td><span class="spec-val">≥ 3%</span></td><td>AOAC 920.39</td></tr>
+                <tr><td>Ash Content</td><td><span class="spec-val">≤ 8%</span></td><td>AOAC 942.05</td></tr>
+                <tr><td>Glucosinolates</td><td><span class="spec-val">≤ 30 µmol/g</span></td><td>ISO 9167</td></tr>
+                <tr><td>Metabolizable Energy</td><td><span class="spec-val">~1,900 kcal/kg</span></td><td>Calculated</td></tr>
+                <tr><td>Packaging</td><td><span class="spec-val">Bulk / 50kg Bags</span></td><td>By arrangement</td></tr>
+                <tr><td>Origin</td><td><span class="spec-val">Canada (BC / Prairie Provinces)</span></td><td>CFIA Regulated</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="margin-top:24px;">
+            <a href="contact.html" class="btn btn-gold">Request a Quote</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="product-divider" />
+
+  <!-- ========================================================
+       PRODUCT 02 — PREMIUM SOYBEAN MEAL
+  ========================================================= -->
+  <section class="product-block" id="soybean-meal">
+    <div class="container">
+      <div class="product-block-grid">
+        <div class="product-info reveal">
+          <span class="section-label">Product 02</span>
+          <h2>Premium Soybean Meal</h2>
+          <div class="divider-gold"></div>
+          <div class="product-badge-row">
+            <span class="badge badge-green">✓ High-Protein</span>
+            <span class="badge badge-green">✓ Solvent Extracted</span>
+            <span class="badge badge-gold">★ COA Certified</span>
+          </div>
+          <p>Premium solvent-extracted soybean meal sourced from top-tier Canadian processors. A globally trusted protein source for poultry, swine, ruminant, and aquaculture feed — offering excellent amino acid profiles and high digestibility for maximum feed conversion efficiency.</p>
+          <div class="spec-table-wrap">
+            <table class="product-spec-table">
+              <thead>
+                <tr><th>Parameter</th><th>Specification</th><th>Standard</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Crude Protein (CP)</td><td><span class="spec-val">≥ 46%</span></td><td>AOAC 990.03</td></tr>
+                <tr><td>Moisture Content</td><td><span class="spec-val">≤ 12%</span></td><td>AOAC 934.01</td></tr>
+                <tr><td>Crude Fiber (CF)</td><td><span class="spec-val">≤ 7%</span></td><td>AOAC 962.09</td></tr>
+                <tr><td>Crude Fat</td><td><span class="spec-val">≥ 1.5%</span></td><td>AOAC 920.39</td></tr>
+                <tr><td>Ash Content</td><td><span class="spec-val">≤ 7%</span></td><td>AOAC 942.05</td></tr>
+                <tr><td>Urease Activity</td><td><span class="spec-val">≤ 0.05 pH units</span></td><td>AOCS Ba 9-58</td></tr>
+                <tr><td>Metabolizable Energy</td><td><span class="spec-val">~2,230 kcal/kg</span></td><td>Calculated</td></tr>
+                <tr><td>Packaging</td><td><span class="spec-val">Bulk / 50kg Bags</span></td><td>By arrangement</td></tr>
+                <tr><td>Origin</td><td><span class="spec-val">Canada</span></td><td>CFIA Regulated</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="margin-top:24px;">
+            <a href="contact.html" class="btn btn-gold">Request a Quote</a>
+          </div>
+        </div>
+        <div class="product-visual reveal">
+          <div class="product-emoji-card" style="background: linear-gradient(145deg, #d4e8c8, #b8d4a0);">
+            <span class="product-num-tag">Product 02</span>
+            <span class="emoji">🫘</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="product-divider" />
+
+  <!-- ========================================================
+       PRODUCT 03 — DDGS
+  ========================================================= -->
+  <section class="product-block" id="ddgs">
+    <div class="container">
+      <div class="product-block-grid">
+        <div class="product-visual reveal">
+          <div class="product-emoji-card" style="background: linear-gradient(145deg, #e8d8a0, #d4c070);">
+            <span class="product-num-tag">Product 03</span>
+            <span class="emoji">🌽</span>
+          </div>
+        </div>
+        <div class="product-info reveal">
+          <span class="section-label">Product 03</span>
+          <h2>Distiller's Dried Grains with Solubles (DDGS)</h2>
+          <div class="divider-gold"></div>
+          <div class="product-badge-row">
+            <span class="badge badge-green">✓ High Energy</span>
+            <span class="badge badge-green">✓ High Fiber</span>
+            <span class="badge badge-gold">★ COA Certified</span>
+          </div>
+          <p>A highly digestible co-product of the ethanol production process, DDGS is an economical and nutrient-dense feed ingredient. Rich in protein, energy, and phosphorus, it is widely used in ruminant, swine, and poultry rations as a cost-effective alternative to corn and soybean meal.</p>
+          <div class="spec-table-wrap">
+            <table class="product-spec-table">
+              <thead>
+                <tr><th>Parameter</th><th>Specification</th><th>Standard</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Crude Protein (CP)</td><td><span class="spec-val">≥ 27%</span></td><td>AOAC 990.03</td></tr>
+                <tr><td>Moisture Content</td><td><span class="spec-val">≤ 12%</span></td><td>AOAC 934.01</td></tr>
+                <tr><td>Crude Fiber (CF)</td><td><span class="spec-val">≤ 12%</span></td><td>AOAC 962.09</td></tr>
+                <tr><td>Crude Fat (Ether Extract)</td><td><span class="spec-val">≥ 8%</span></td><td>AOAC 920.39</td></tr>
+                <tr><td>Ash Content</td><td><span class="spec-val">≤ 6%</span></td><td>AOAC 942.05</td></tr>
+                <tr><td>Total Phosphorus</td><td><span class="spec-val">≥ 0.7%</span></td><td>AOAC 965.17</td></tr>
+                <tr><td>Metabolizable Energy (Poultry)</td><td><span class="spec-val">~2,900 kcal/kg</span></td><td>Calculated</td></tr>
+                <tr><td>Packaging</td><td><span class="spec-val">Bulk / 50kg Bags</span></td><td>By arrangement</td></tr>
+                <tr><td>Origin</td><td><span class="spec-val">Canada</span></td><td>CFIA Regulated</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="margin-top:24px;">
+            <a href="contact.html" class="btn btn-gold">Request a Quote</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="product-divider" />
+
+  <!-- ========================================================
+       PRODUCT 04 — HARD RED SPRING WHEAT
+  ========================================================= -->
+  <section class="product-block" id="wheat">
+    <div class="container">
+      <div class="product-block-grid">
+        <div class="product-info reveal">
+          <span class="section-label">Product 04</span>
+          <h2>Hard Red Spring Wheat</h2>
+          <div class="divider-gold"></div>
+          <div class="product-badge-row">
+            <span class="badge badge-green">✓ High Gluten</span>
+            <span class="badge badge-green">✓ Milling Grade</span>
+            <span class="badge badge-gold">★ CFIA Certified</span>
+          </div>
+          <p>Canada's most internationally sought-after wheat variety — Hard Red Spring (HRS) wheat is prized for its exceptional protein content and superior gluten strength. Ideal for high-quality bread flour milling and blending, it is the benchmark grain for milling industries across Africa, Asia, and the Middle East.</p>
+          <div class="spec-table-wrap">
+            <table class="product-spec-table">
+              <thead>
+                <tr><th>Parameter</th><th>Specification</th><th>Standard</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Crude Protein (CP)</td><td><span class="spec-val">≥ 13.5%</span></td><td>AOAC 990.03</td></tr>
+                <tr><td>Moisture Content</td><td><span class="spec-val">≤ 14.5%</span></td><td>AOAC 934.01</td></tr>
+                <tr><td>Test Weight</td><td><span class="spec-val">≥ 79 kg/hL</span></td><td>CGC Standard</td></tr>
+                <tr><td>Falling Number</td><td><span class="spec-val">≥ 300 seconds</span></td><td>ICC 107/1</td></tr>
+                <tr><td>Gluten Content (Wet)</td><td><span class="spec-val">≥ 28%</span></td><td>ICC 137/1</td></tr>
+                <tr><td>Admixture / Dockage</td><td><span class="spec-val">≤ 2%</span></td><td>CGC Standard</td></tr>
+                <tr><td>Grade</td><td><span class="spec-val">No.1 CWRS / No.2 CWRS</span></td><td>Canada Western Red Spring</td></tr>
+                <tr><td>Packaging</td><td><span class="spec-val">Bulk / Containers</span></td><td>By arrangement</td></tr>
+                <tr><td>Origin</td><td><span class="spec-val">Prairie Provinces, Canada</span></td><td>CFIA / CGC Regulated</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="margin-top:24px;">
+            <a href="contact.html" class="btn btn-gold">Request a Quote</a>
+          </div>
+        </div>
+        <div class="product-visual reveal">
+          <div class="product-emoji-card" style="background: linear-gradient(145deg, #e8d4b0, #d4b880);">
+            <span class="product-num-tag">Product 04</span>
+            <span class="emoji">🌾</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="product-divider" />
+
+  <!-- ========================================================
+       PRODUCT 05 — QUALITY FEED-GRADE MAIZE (CORN)
+  ========================================================= -->
+  <section class="product-block" id="maize">
+    <div class="container">
+      <div class="product-block-grid">
+        <div class="product-visual reveal">
+          <div class="product-emoji-card" style="background: linear-gradient(145deg, #f0e090, #e0c840);">
+            <span class="product-num-tag">Product 05</span>
+            <span class="emoji">🌽</span>
+          </div>
+        </div>
+        <div class="product-info reveal">
+          <span class="section-label">Product 05</span>
+          <h2>Quality Feed-Grade Maize (Corn)</h2>
+          <div class="divider-gold"></div>
+          <div class="product-badge-row">
+            <span class="badge badge-green">✓ High Energy</span>
+            <span class="badge badge-green">✓ Low Aflatoxin</span>
+            <span class="badge badge-gold">★ COA Certified</span>
+          </div>
+          <p>A cornerstone energy ingredient in global livestock and poultry feed formulations. Our feed-grade maize is sourced from certified Canadian and North American producers, ensuring consistently low aflatoxin levels, excellent energy density, and high starch content — meeting the strict biosecurity requirements of Nigerian and West African importers.</p>
+          <div class="spec-table-wrap">
+            <table class="product-spec-table">
+              <thead>
+                <tr><th>Parameter</th><th>Specification</th><th>Standard</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Crude Protein (CP)</td><td><span class="spec-val">≥ 8%</span></td><td>AOAC 990.03</td></tr>
+                <tr><td>Moisture Content</td><td><span class="spec-val">≤ 14%</span></td><td>AOAC 934.01</td></tr>
+                <tr><td>Crude Fiber (CF)</td><td><span class="spec-val">≤ 3%</span></td><td>AOAC 962.09</td></tr>
+                <tr><td>Crude Fat</td><td><span class="spec-val">≥ 3.5%</span></td><td>AOAC 920.39</td></tr>
+                <tr><td>Starch Content</td><td><span class="spec-val">≥ 68%</span></td><td>AACC 76-13</td></tr>
+                <tr><td>Aflatoxin</td><td><span class="spec-val">≤ 10 ppb</span></td><td>ELISA / HPLC</td></tr>
+                <tr><td>Metabolizable Energy (Poultry)</td><td><span class="spec-val">~3,300 kcal/kg</span></td><td>Calculated</td></tr>
+                <tr><td>Packaging</td><td><span class="spec-val">Bulk / 50kg Bags</span></td><td>By arrangement</td></tr>
+                <tr><td>Origin</td><td><span class="spec-val">Canada / North America</span></td><td>CFIA Regulated</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="margin-top:24px;">
+            <a href="contact.html" class="btn btn-gold">Request a Quote</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CERTIFICATIONS ========== -->
+  <section class="certs-section">
+    <div class="container">
+      <div class="reveal text-center">
+        <span class="section-label">Quality Assurance</span>
+        <h2 class="section-title">Certifications &amp; Compliance</h2>
+        <div class="divider-gold center"></div>
+        <p class="section-sub" style="margin:0 auto;">Every shipment across all 5 products meets international standards for food safety, biosecurity, and regulatory compliance.</p>
+      </div>
+      <div class="certs-grid">
+        <div class="cert-card reveal"><div class="cert-icon">🍁</div><h4>CFIA</h4><p>Canadian Food Inspection Agency certified — meeting Canada's highest agricultural export standards.</p></div>
+        <div class="cert-card reveal"><div class="cert-icon">🌿</div><h4>Phytosanitary</h4><p>Full phytosanitary certification for each shipment, ensuring compliance with international plant health regulations.</p></div>
+        <div class="cert-card reveal"><div class="cert-icon">📊</div><h4>COA Certified</h4><p>Certificate of Analysis from accredited laboratories provided with every shipment.</p></div>
+        <div class="cert-card reveal"><div class="cert-icon">🇳🇬</div><h4>NAQS / NAFDAC</h4><p>All products meet Nigerian Agricultural Quarantine Service and NAFDAC import requirements.</p></div>
+      </div>
+
+      <div class="trade-terms-box reveal">
+        <div class="icon">📋</div>
+        <div>
+          <h4>Trade Terms — Incoterms 2020 (CIF)</h4>
+          <p>All shipments are standardized on <strong style="color:var(--gold)">Cost, Insurance &amp; Freight (CIF)</strong> basis. DL Agro handles all freight, insurance, and export documentation to the port of destination. Documents include: Commercial Invoice, Bill of Lading, Certificate of Analysis (COA), Phytosanitary Certificate, and Packing List.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA ========== -->
+  <section class="cta-banner">
+    <div class="container">
+      <div class="cta-banner-inner">
+        <h2>Ready to Request Specifications or a Shipment Quote?</h2>
+        <a href="contact.html" class="btn btn-green">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          Contact Us Today
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <div class="footer-logo"><img src="logo.jpg" alt="DL Agro Commodities Ltd." /></div>
+          <p>A premier international B2B agricultural commodity trading firm, bridging Canada's agricultural excellence with global market demand.</p>
+          <div class="footer-motto">Sourcing Excellence, Powering Global Growth</div>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="products.html">Our Products</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Our Products</h4>
+          <ul>
+            <li><a href="#canola-meal">Premium Canola Meal</a></li>
+            <li><a href="#soybean-meal">Premium Soybean Meal</a></li>
+            <li><a href="#ddgs">DDGS</a></li>
+            <li><a href="#wheat">Hard Red Spring Wheat</a></li>
+            <li><a href="#maize">Feed-Grade Maize</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect With Us</h4>
+          <div class="footer-contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            Surrey, BC, Canada
+          </div>
+          <div class="footer-contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            Lagos, Nigeria
+          </div>
+          <div class="footer-contact-item" style="margin-top:8px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:15px;flex-shrink:0;color:var(--gold)"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <a href="https://www.linkedin.com/company/dl-agro-commodities-ltd/" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.5);transition:color 0.3s;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Company LinkedIn</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:15px;flex-shrink:0;color:var(--gold)"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <a href="https://www.linkedin.com/in/adurojadiran" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.5);transition:color 0.3s;" onmouseover="this.style.color='#C9A84C'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Founder LinkedIn</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 DL Agro Commodities Ltd. All rights reserved.</p>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/company/dl-agro-commodities-ltd/" target="_blank" rel="noopener" aria-label="Company LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/adurojadiran" target="_blank" rel="noopener" aria-label="Founder LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Product tab active state on scroll
+    const tabs = document.querySelectorAll('.product-tab');
+    const sections = document.querySelectorAll('.product-block');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 160;
+        if (window.scrollY >= sectionTop) current = section.getAttribute('id');
+      });
+      tabs.forEach(tab => {
+        tab.classList.remove('active');
+        if (tab.getAttribute('href') === '#' + current) tab.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
